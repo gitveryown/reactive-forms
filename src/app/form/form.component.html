@@ -1,0 +1,64 @@
+
+<div class="container">
+  <form
+    [formGroup]="userDetails"
+    (ngSubmit)="onSubmit()"
+    novalidate
+  >
+    <div class="form-group">
+      <label for="fName" class="form-label">First name:</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="firstName"
+        
+      />
+      <br />
+
+       <div [ngStyle]="{color:'red'}" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+        <div *ngIf="firstName.errors?.['required']">
+          Name is required.
+        </div>          
+      </div>
+      <div [ngStyle]="{color:'red'}" *ngIf="firstName.errors?.['minlength']">
+		Minimum 1 character maximum 30
+	</div>          
+
+      
+    </div>
+    <div class="form-group" >
+      <label for="lName" class="form-label">Last name:</label>
+      <input
+        type="text"
+        name="lastName"
+        class="form-control"
+        formControlName="lastName"
+        required
+      /><br />
+    </div>
+    <div class="form-group">
+      <label for="email" class="form-label">Email:</label>
+      <input
+        type="email"
+        name="userMail"
+        class="form-control"
+        formControlName="email"
+        email
+      
+      />
+      <br/>
+    </div>
+    <input
+      type="submit"
+      class="btn btn-primary"
+      value="Submit"
+      [disabled]="userDetails.invalid"
+    />
+    <input
+      type="submit"
+      class="btn btn-warning"
+      value="Reset"
+      (click)="userDetails.reset()"
+    /><br />
+  </form>
+</div>
