@@ -1,42 +1,58 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.css'],
 })
-export class FormComponent implements OnInit {
-  title = 'Reactive Forms';
-  userDetails!: FormGroup;
-  constructor() {}
-  ngOnInit(): void {
-    this.userDetails = new FormGroup({
-      // add fullName form group 
+export class FormComponent {
+  userDetails: FormGroup;
+
+  constructor(private router: Router) {
+    this.userDetails! = new FormGroup({
       firstName: new FormControl(null, [
         Validators.required,
         Validators.minLength(1),
-        Validators.pattern('[A-Za-z]{1,30}'),
+        Validators.pattern('[A-Za-z]{1,10}'),
       ]),
       lastName: new FormControl(null, [
         Validators.required,
-        Validators.pattern('[A-Za-z\s?]{3,}'),
+        Validators.pattern('[A-Za-zs?]{3,}'),
       ]),
-      email: new FormControl(null, 
-        [Validators.required, 
-        Validators.email]),
+
+      email: new FormControl(null, [
+        Validators.required,
+        Validators.email,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      ]),
     });
   }
 
   onSubmit() {
-    console.log(this.userDetails)
-    console.log(this.firstName.errors);
-    
-}
+    if (this.userDetails.valid) {
+      const formData = this.userDetails.value;
+      
+      const navigationExtras : NavigationExtras = {
+        state: {formData}
+      }
+     console.log(navigationExtras.state?.['formData']);
+     
+      this.router.navigate(['/table'], navigationExtras);
+    }
+  }
 
-get firstName() {
-  return this.userDetails.get('firstName')!
-  
-}
+  // for validations
+  get firstName() {
+    return this.userDetails.get('firstName')!;
+  }
 
+  get lastName() {
+    return this.userDetails.get('lastName')!;
+  }
+
+  get email() {
+    return this.userDetails.get('email')!;
+  }
 }

@@ -1,9 +1,13 @@
-<span>{{ title }} app is running!</span>
-<hr />
-<ul [ngClass]="{}">
-  <li>
-    <a routerLink="/form" routerLinkActive="active" ariaCurrentWhenActive="page"
-      >form data</a
+<nav>
+<ul>
+  <li [ngStyle]="{listStyle:'none'}">
+    <a [ngStyle]="{textDecoration:'none', color:'green'}"  routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page"
+      >Home</a
     >
   </li>
+
 </ul>
+</nav>
+
+
+<router-outlet></router-outlet>

@@ -1,0 +1,19 @@
+table, td, th {
+    margin-top: 15px;
+    border: 1px solid black;
+  }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  tbody{
+    padding-right:5px; 
+  }
+th {
+    height: 50px;
+  }
+
+  tr{
+    height: 3rem;
+  }
