@@ -5,18 +5,27 @@
       <th scope="col">Last</th>
       <th scope="col">Email</th>
       <th scope="col">Actions</th>
-      <button (click)="showMessage()">Show message</button>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of formData; ">
-     <td>will</td>
-     <td>wright</td>
-     <td>ex@gmail.com</td>
-      <!-- <td>{{ data?.firstName }}</td>
-      <td>{{ data?.lastName }}</td>
-      <td>{{ data?.email }}</td> -->
-      <!-- <td> <button (click)="editItem(i)">Edit</button> <button (click)="deleteItem(i)">Delete</button></td> -->
+    <tr *ngFor="let item of formData">
+      
+       <!-- add let i = index  to ngFor directive -->
+        <td>{{item.firstName}}</td>
+        <td>{{item.lastName}}</td>
+        <td>{{item.email}}</td>
+      
+        <td class="action">
+          <!-- add i as an argument in editBtn & deleteBtn function -->
+          <button class="btn btn-warning" (click)="editBtn()">edit</button
+          ><button class="btn btn-danger" (click)="deleteBtn()">delete</button>
+         
+        </td>
+      
     </tr>
   </tbody>
 </table>
+
+<div *ngFor="let info of formData| keyvalue">
+  {{info.value}}
+</div>

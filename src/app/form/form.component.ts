@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-form',
@@ -10,7 +11,7 @@ import { NavigationExtras, Router } from '@angular/router';
 export class FormComponent {
   userDetails: FormGroup;
 
-  constructor(private router: Router) {
+  constructor(private dataService: DataService, private router: Router) {
     this.userDetails! = new FormGroup({
       firstName: new FormControl(null, [
         Validators.required,
@@ -32,14 +33,10 @@ export class FormComponent {
 
   onSubmit() {
     if (this.userDetails.valid) {
-      const formData = this.userDetails.value;
-      
-      const navigationExtras : NavigationExtras = {
-        state: {formData}
-      }
-     console.log(navigationExtras.state?.['formData']);
-     
-      this.router.navigate(['/table'], navigationExtras);
+      const formData:string|number = this.userDetails.value;
+      console.log('This is from form:', formData);
+      this.dataService.setFormData(formData);
+      this.router.navigate(['/table']);
     }
   }
 

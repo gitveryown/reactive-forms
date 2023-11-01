@@ -4,8 +4,8 @@ import { FormComponent } from './form/form.component';
 import { TableComponent } from './table/table.component';
 
 const routes: Routes = [
-  { path: '', component: FormComponent }, // Home page
-  { path: 'table', component: TableComponent }, // Table page
+  { path: '', component: FormComponent, title:'Home Page'}, // Home page
+  { path: 'table', component: TableComponent, title:'Table Page '}, // Table page
 ];
 
 @NgModule({
