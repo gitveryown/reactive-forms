@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 
 @Component({
@@ -33,9 +33,10 @@ export class FormComponent {
 
   onSubmit() {
     if (this.userDetails.valid) {
-      const formData:string|number = this.userDetails.value;
-      console.log('This is from form:', formData);
-      this.dataService.setFormData(formData);
+      const data = this.userDetails.value;
+      this.dataService.formData.push(data) 
+      console.log(data);
+      
       this.router.navigate(['/table']);
     }
   }
