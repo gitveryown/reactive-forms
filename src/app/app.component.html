@@ -1,9 +1,14 @@
 <nav>
-<ul>
+<ul [ngStyle]="{display:'flex', gap:'2em'}">
   <li [ngStyle]="{listStyle:'none'}">
-    <a [ngStyle]="{textDecoration:'none', color:'green'}"  routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page"
-      >Home</a
+    <a  [ngStyle]="{textDecoration:'none', color:'blue'}"  routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page"
+      > Home</a
     >
+  </li>
+  <li [ngStyle]="{listStyle:'none'}">
+    <a [ngStyle]="{textDecoration:'none', color:'blue'}"  routerLink="/table" routerLinkActive="active" ariaCurrentWhenActive="page">
+      Table
+    </a>
   </li>
 
 </ul>

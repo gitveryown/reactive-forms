@@ -8,24 +8,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of dataService.formData">
-      
-       <!-- add let i = index  to ngFor directive -->
-        <td>{{item.firstName}}</td>
-        <td>{{item.lastName}}</td>
-        <td>{{item.email}}</td>
-      
-        <td class="action">
-          <!-- add i as an argument in editBtn & deleteBtn function -->
-          <button class="btn btn-warning" (click)="editBtn()">edit</button
-          ><button class="btn btn-danger" (click)="deleteBtn(item)">delete</button>
-         
-        </td>
-      
+    <tr *ngFor="let item of dataService.sharedFormData; let i = index">
+      <td>{{ item.firstName }}</td>
+      <td>{{ item.lastName }}</td>
+      <td>{{ item.email }}</td>
+
+      <td class="action">
+        <button class="btn btn-warning" (click)="editBtn(i)">edit</button>
+        <button class="btn btn-danger" (click)="deleteBtn(i)">Delete</button>
+      </td>
     </tr>
   </tbody>
 </table>
-
-<div *ngFor="let info of formData| keyvalue">
-  {{info.value}}
-</div>

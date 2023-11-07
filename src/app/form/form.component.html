@@ -2,7 +2,7 @@
   <form [formGroup]="userDetails" (ngSubmit)="onSubmit()">
     <div class="form-control">
       <label for="fName" class="form-label">First name:</label>
-      <input type="text" class="form-control" formControlName="firstName" />
+      <input ngClass="receieveEditData" type="text" class="form-control" formControlName="firstName" />
       <br />
 
       <div
@@ -17,7 +17,7 @@
     </div>
     <div class="form-control">
       <label for="lName" class="form-label">Last name:</label>
-      <input type="text" class="form-control" formControlName="lastName" />
+      <input ngClass="receieveEditData" type="text" class="form-control" formControlName="lastName" />
       <br />
       <div
         [ngStyle]="{ color: 'red' }"
@@ -35,6 +35,7 @@
     <div class="form-control">
       <label for="email" class="form-label">Email:</label>
       <input
+        ngClass="receieveEditData"
         type="email"
         name="email"
         class="form-control"

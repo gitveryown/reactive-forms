@@ -8,26 +8,22 @@ import { DataService } from '../data.service';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent {
-  formData: any;
-  
-
+  userDetails: any;
 
   constructor(public dataService: DataService, private router: Router) {}
 
-  showMessage() {
-    const formData = this.formData;
-    console.log('working on getting data shown here:', formData);
+  deleteBtn(index: number) {
+    this.dataService.sharedFormData.splice(index, 1);
+
+    if (this.dataService.sharedFormData.length < 1) {
+      alert('Please enter your details');
+      this.router.navigate(['/']);
+    }
   }
 
-  deleteBtn(element:any) {
-   this.dataService.formData.forEach((value:any, index:any) => {
-    if(value === element)
-      this.dataService.formData.splice(index, 1)
-    
-   });
-    console.log('this button will be removed', element);
-  }
-  editBtn() {
-    console.log('this button will be edited');
+  editBtn(index: number) {
+    this.dataService.setEditRow = index;
+    this.dataService.editBtn()
+    this.router.navigate(['/'])
   }
 }
