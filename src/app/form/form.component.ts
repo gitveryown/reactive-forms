@@ -9,29 +9,26 @@ import { DataService } from '../data.service';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
-  title: string = 'This is my app'
+  title: string = 'This is my app';
   userDetails: FormGroup;
-  data:any
-  
+  data: any;
+
   constructor(private dataService: DataService, private router: Router) {
-    const dataToEdit:any | null = this.dataService.editBtn()
-    console.log('this is the return data from table to the form:',dataToEdit);
-    
+    const dataToEdit: any | null = this.dataService.editBtn();
+    console.log('this is the return data from table to the form:', dataToEdit);
+
     this.userDetails! = new FormGroup({
-      firstName: new FormControl(null,[
-        dataToEdit.firstName,
+      firstName: new FormControl(dataToEdit ? dataToEdit.firstName : null, [
         Validators.required,
         Validators.minLength(1),
         Validators.pattern('[A-Za-z]{1,10}'),
       ]),
-      lastName: new FormControl(null, [
-        dataToEdit.lastName,
+      lastName: new FormControl(dataToEdit ? dataToEdit.lastName : null, [
         Validators.required,
         Validators.pattern('[A-Za-zs?]{3,}'),
       ]),
 
-      email: new FormControl(null, [
-        dataToEdit.email,
+      email: new FormControl(dataToEdit ? dataToEdit.email : null, [
         Validators.required,
         Validators.email,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
@@ -45,11 +42,8 @@ export class FormComponent {
       this.dataService.setEditData(data);
       this.dataService.sharedFormData.push(data);
       this.router.navigate(['/table']);
-      
     }
   }
-
-
 
   // for validations
   get firstName() {
