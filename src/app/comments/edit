@@ -1,0 +1,4 @@
+As an edit button on the table, I would like to be clicked so that the data you want to edit can be edited within the form table.
+When edit button is clicked, redirect to form path
+When edit is clicked, the form inputs should be filled with the edit data
+When the form is then resubmitted with the new edit data, that data should not create a new row in table, should update the selected edit row 

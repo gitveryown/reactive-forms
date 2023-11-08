@@ -8,18 +8,19 @@ import { DataService } from '../data.service';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent {
-  userDetails: any;
-
   constructor(public dataService: DataService, private router: Router) {}
 
   deleteBtn(index: number) {
-    this.dataService.sharedFormData.splice(index, 1);
+    this.dataService.tableData.splice(index, 1);
 
-    if (this.dataService.sharedFormData.length < 1) {
+    if (this.dataService.tableData.length < 1) {
       alert('Please enter your details');
       this.router.navigate(['/']);
     }
   }
+
+
+
 
   editBtn(index: number) {
     this.dataService.setEditRow = index;
