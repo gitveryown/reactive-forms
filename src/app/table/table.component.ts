@@ -8,6 +8,7 @@ import { DataService } from '../data.service';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent {
+  
   constructor(public dataService: DataService, private router: Router) {}
 
   deleteBtn(index: number) {
@@ -25,6 +26,7 @@ export class TableComponent {
   editBtn(index: number) {
     this.dataService.setEditRow = index;
     this.dataService.editBtn()
+    this.dataService.setEditState(true)
     this.router.navigate(['/'])
   }
 }

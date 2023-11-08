@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
-import { identifierName } from '@angular/compiler';
 
 @Component({
   selector: 'app-form',
@@ -13,8 +12,7 @@ export class FormComponent {
   userDetails: FormGroup;
 
   constructor(private dataService: DataService, private router: Router) {
-
-    const dataToEdit:any | null = this.dataService.editBtn();
+    const dataToEdit: any | null = this.dataService.editBtn();
 
     this.userDetails! = new FormGroup({
       firstName: new FormControl(dataToEdit ? dataToEdit.firstName : null, [
@@ -37,18 +35,22 @@ export class FormComponent {
 
   onSubmit() {
     let formData = this.userDetails.value;
-    const tableData = this.dataService.tableData
-    let index = this.dataService.setEditRow
-    if (this.userDetails.valid) {
+    let tableData = this.dataService.tableData;
+    let index = this.dataService.setEditRow;
+    const isEditMode = this.dataService.getEditState();
+
+    if (this.userDetails.valid && !isEditMode) {
       tableData.push(formData);
       this.router.navigate(['/table']);
+      console.log('sending1');
+      
     }
-    
-    if(tableData[index] !== -1) {
-      return tableData[index] = formData
-    }
-    
 
+    if (isEditMode) {
+      console.log('sending2');
+      tableData[index] = formData;
+      this.router.navigate(['/table']);
+    }
   }
 
   // for validations
@@ -59,7 +61,7 @@ export class FormComponent {
   get lastName() {
     return this.userDetails.get('lastName')!;
   }
- 
+
   get email() {
     return this.userDetails.get('email')!;
   }
