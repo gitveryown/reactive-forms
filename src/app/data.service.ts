@@ -18,6 +18,8 @@ export class DataService {
 
   setEditState(edit:boolean){
     this.editBtnClicked = edit
+    console.log('this edit button is now being clicked');
+    
   } 
 
   getEditState(){

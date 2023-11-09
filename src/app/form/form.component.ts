@@ -38,19 +38,22 @@ export class FormComponent {
     let tableData = this.dataService.tableData;
     let index = this.dataService.setEditRow;
     const isEditMode = this.dataService.getEditState();
+    const exitEditMode = this.dataService.setEditState(false);
 
     if (this.userDetails.valid && !isEditMode) {
       tableData.push(formData);
       this.router.navigate(['/table']);
-      console.log('sending1');
-      
+      console.log('not edit');
     }
 
     if (isEditMode) {
-      console.log('sending2');
-      tableData[index] = formData;
+      console.log('edit mode');
       this.router.navigate(['/table']);
+      tableData[index] = formData;
+      return exitEditMode;
     }
+
+    return this.userDetails.reset();
   }
 
   // for validations
