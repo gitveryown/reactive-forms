@@ -9,12 +9,12 @@ export class DataService {
   editBtnClicked: boolean = false
   
   
-
-  // This is connected to the Edit btn on the Table Component
-  editBtn() {
+ // This is connected to the Edit btn on the Table Component
+  getEditData() {
     const index = this.setEditRow
     return this.tableData[index]
   }
+
 
   setEditState(edit:boolean){
     this.editBtnClicked = edit
@@ -24,6 +24,10 @@ export class DataService {
 
   getEditState(){
     return this.editBtnClicked
+  }
+// trying to use reset method didnt work, need to reset the state position
+  resetEditState(){
+    this.setEditRow = -1
   }
 }
 

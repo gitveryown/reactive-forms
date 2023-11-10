@@ -12,7 +12,7 @@ export class FormComponent {
   userDetails: FormGroup;
 
   constructor(private dataService: DataService, private router: Router) {
-    const dataToEdit: any | null = this.dataService.editBtn();
+    const dataToEdit: any | null = this.dataService.getEditData();
 
     this.userDetails! = new FormGroup({
       firstName: new FormControl(dataToEdit ? dataToEdit.firstName : null, [
@@ -45,17 +45,16 @@ export class FormComponent {
       this.router.navigate(['/table']);
       console.log('not edit');
     }
-
     if (isEditMode) {
       console.log('edit mode');
+      // should use getter here instead of hard code
+      tableData[index] = formData
       this.router.navigate(['/table']);
-      tableData[index] = formData;
-      return exitEditMode;
+      exitEditMode;
     }
-
-    return this.userDetails.reset();
+    this.dataService.resetEditState();
+    
   }
-
   // for validations
   get firstName() {
     return this.userDetails.get('firstName')!;

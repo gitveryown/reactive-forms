@@ -25,7 +25,7 @@ export class TableComponent {
 
   editBtn(index: number) {
     this.dataService.setEditRow = index;
-    this.dataService.editBtn()
+    this.dataService.getEditData()
     this.dataService.setEditState(true)
     this.router.navigate(['/'])
   }
