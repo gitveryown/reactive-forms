@@ -1,31 +1,34 @@
 import { Injectable } from '@angular/core';
+import { Users } from '../models/users';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  tableData: any[] = [];
-  setEditRow: number = -1;
-  editBtnClicked: boolean = false
+ public tableData:Users[] = [];
+ public setEditRow: number = -1;
+ public editBtnClicked: boolean = false
   
   
- // This is connected to the Edit btn on the Table Component
+ // Allows me to get the edit data to be configured
   getEditData() {
     const index = this.setEditRow
     return this.tableData[index]
   }
 
-
+// Setting the set allow me to switch edit mode (state) off and on
   setEditState(edit:boolean){
     this.editBtnClicked = edit
     console.log('this edit button is now being clicked');
     
   } 
 
+  // Returns the edit state
   getEditState(){
     return this.editBtnClicked
   }
-// trying to use reset method didnt work, need to reset the state position
+// T rying to use reset method on submit didnt work, need to reset the state position
   resetEditState(){
     this.setEditRow = -1
   }

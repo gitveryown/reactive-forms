@@ -1,0 +1,6 @@
+// add access specifiers✔️
+// function level comments✔️
+// data model, interface✔️
+
+// Started on data model, missing the connection on the form to restrict
+// what data is accepted
